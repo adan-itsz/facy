@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Enumeration;
+using Windows.UI.Popups;
 
 namespace facy.UWP
 {
@@ -32,24 +33,29 @@ namespace facy.UWP
         public MainPage()
         {
             this.InitializeComponent();
-            listOfDevices = new ObservableCollection<DeviceInformation>;
+            listOfDevices = new ObservableCollection<DeviceInformation>();
             LoadApplication(new facy.App());
-            SerialPortConfiguration();
+            ListAvailablePorts();
+           
         }
 
         private async void ListAvailablePorts()
         {
             try
             {
+               // var dialog = new MessageDialog(valor.ToString());
+                
                 string aqs = SerialDevice.GetDeviceSelector();
                 var dis = await DeviceInformation.FindAllAsync(aqs);
                 for(int i = 0; i < dis.Count; i++)
                 {
+                   
                     listOfDevices.Add(dis[i]);
                 }
-               
+                SerialPortConfiguration();
 
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
 
             }
@@ -69,8 +75,9 @@ namespace facy.UWP
                 serialPort.DataBits = 8;
                 serialPort.Handshake = SerialHandshake.None;
                 ReadCancellationTokenSource = new CancellationTokenSource();
-
-            }catch(Exception ex)
+                Listen();
+            }
+            catch(Exception ex)
             {
 
             }
@@ -102,10 +109,20 @@ namespace facy.UWP
             dataReaderObject.InputStreamOptions = InputStreamOptions.Partial;
             loadAsyncTask = dataReaderObject.LoadAsync(ReadBufferLength).AsTask(cancellationToken);
             UInt32 bytesRead = await loadAsyncTask;
+            string valor="";
+            
             if (bytesRead > 0)
             {
-               //leer puerto =dataReaderObject.ReadString(bytesRead)
+                valor = dataReaderObject.ReadString(bytesRead); //lee lo enviado por el serial port
             }
+            if (valor == "#\r\n")
+            {
+                var dialog = new MessageDialog(valor.ToString());
+                await dialog.ShowAsync();
+
+                //aqui se debe llamar al metodo de tomar la foto
+            }
+            
         }
         private void CancelReadTask()
         {

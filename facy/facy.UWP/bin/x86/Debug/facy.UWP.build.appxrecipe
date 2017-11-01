@@ -10,19 +10,19 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>f736c883-f105-4d30-a719-4bf328872f5e</PackageIdentityName>
     <PackageIdentityPublisher>CN=joaqu</PackageIdentityPublisher>
-    <IntermediateOutputPath>c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.exe">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.exe">
       <PackagePath>entrypoint\facy.UWP.exe</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
@@ -346,37 +346,37 @@
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Xamarin.Forms\2.0.0.6482\lib\uap10.0\Xamarin.Forms.Xaml.dll">
       <PackagePath>Xamarin.Forms.Xaml.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.xr.xml">
       <PackagePath>facy.UWP.xr.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
@@ -388,11 +388,11 @@
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Xamarin.Forms\2.0.0.6482\lib\uap10.0\Xamarin.Forms.Platform.UAP\Properties\Xamarin.Forms.Platform.UAP.rd.xml">
       <PackagePath>Xamarin.Forms.Platform.UAP\Properties\Xamarin.Forms.Platform.UAP.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\adán\documents\visual studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe">
+    <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe">
       <PackagePath>facy.UWP.exe</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
