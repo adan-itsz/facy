@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <CaptureElement x:ConnectionId='1' Name="PreviewControl" Stretch="Uniform"/>
     </Grid>
 </forms:WindowsPage>
 

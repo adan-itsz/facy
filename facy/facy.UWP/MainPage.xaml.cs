@@ -19,24 +19,42 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Enumeration;
 using Windows.UI.Popups;
+using Windows.Media.Capture;
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Storage.Pickers.Provider;
+using Windows.Storage.Pickers;
+
+using Windows.Media.Capture;
+using Windows.ApplicationModel;
+using System.Threading.Tasks;
+using Windows.System.Display;
+using Windows.Graphics.Display;
+using Windows.UI.Core;
+using Windows.Media.MediaProperties;
 
 namespace facy.UWP
 {
     public sealed partial class MainPage
     {
+        private MediaCapture _mediaCapture;
+        bool isPreviewing;
+        DisplayRequest displayRequest = new DisplayRequest();
         private SerialDevice serialPort = null;
         DataReader dataReaderObject = null;
         private ObservableCollection<DeviceInformation> listOfDevices;
         private CancellationTokenSource ReadCancellationTokenSource;
-
+        
+      
 
         public MainPage()
         {
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
             LoadApplication(new facy.App());
-            ListAvailablePorts();
-           
+           // ListAvailablePorts();
+            Application.Current.Resuming += Application_Resuming;
+
         }
 
         private async void ListAvailablePorts()
@@ -101,6 +119,48 @@ namespace facy.UWP
             }
         }
 
+        private async Task InitializeCameraAsync()
+        {
+            if (_mediaCapture == null)
+            {
+                // Get the camera devices
+                var cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
+
+                // try to get the back facing device for a phone
+                var backFacingDevice = cameraDevices
+                    .FirstOrDefault(c => c.EnclosureLocation?.Panel == Windows.Devices.Enumeration.Panel.Back);
+
+                // but if that doesn't exist, take the first camera device available
+                var preferredDevice = backFacingDevice ?? cameraDevices.FirstOrDefault();
+
+                // Create MediaCapture
+                _mediaCapture = new MediaCapture();
+
+                // Initialize MediaCapture and settings
+                await _mediaCapture.InitializeAsync(
+                    new MediaCaptureInitializationSettings
+                    {
+                        VideoDeviceId = preferredDevice.Id
+                    });
+
+                // Set the preview source for the CaptureElement
+                PreviewControl.Source = _mediaCapture;
+
+                // Start viewing through the CaptureElement 
+                await _mediaCapture.StartPreviewAsync();
+            }
+        }
+
+        private async void Application_Resuming(object sender, object o)
+        {
+            await InitializeCameraAsync();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await InitializeCameraAsync();
+        }
+
         private async Task ReadData(CancellationToken cancellationToken)
         {
             Task<UInt32> loadAsyncTask;
@@ -117,13 +177,18 @@ namespace facy.UWP
             }
             if (valor == "#\r\n")
             {
-                var dialog = new MessageDialog(valor.ToString());
-                await dialog.ShowAsync();
+                //   var dialog = new MessageDialog(valor.ToString());
+                //   await dialog.ShowAsync();
 
                 //aqui se debe llamar al metodo de tomar la foto
+                
             }
             
         }
+
+      
+
+       
         private void CancelReadTask()
         {
             if (ReadCancellationTokenSource != null)
