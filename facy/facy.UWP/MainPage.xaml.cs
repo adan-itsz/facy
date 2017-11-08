@@ -44,16 +44,16 @@ namespace facy.UWP
         DataReader dataReaderObject = null;
         private ObservableCollection<DeviceInformation> listOfDevices;
         private CancellationTokenSource ReadCancellationTokenSource;
-        
-      
+        private DeviceInformation _cameraDevice;
+
 
         public MainPage()
         {
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
-            LoadApplication(new facy.App());
+           // LoadApplication(new facy.App());
            // ListAvailablePorts();
-            Application.Current.Resuming += Application_Resuming;
+           Application.Current.Resuming += Application_Resuming;
 
         }
 
@@ -128,20 +128,17 @@ namespace facy.UWP
 
                 // try to get the back facing device for a phone
                 var backFacingDevice = cameraDevices
-                    .FirstOrDefault(c => c.EnclosureLocation?.Panel == Windows.Devices.Enumeration.Panel.Back);
+                    .FirstOrDefault(c => c.EnclosureLocation != null && c.EnclosureLocation.Panel == Windows.Devices.Enumeration.Panel.Front);
 
-                // but if that doesn't exist, take the first camera device available
                 var preferredDevice = backFacingDevice ?? cameraDevices.FirstOrDefault();
+                _cameraDevice = preferredDevice;
 
                 // Create MediaCapture
                 _mediaCapture = new MediaCapture();
+                var settings = new MediaCaptureInitializationSettings { VideoDeviceId = _cameraDevice.Id };
 
-                // Initialize MediaCapture and settings
-                await _mediaCapture.InitializeAsync(
-                    new MediaCaptureInitializationSettings
-                    {
-                        VideoDeviceId = preferredDevice.Id
-                    });
+                
+                await _mediaCapture.InitializeAsync(settings);
 
                 // Set the preview source for the CaptureElement
                 PreviewControl.Source = _mediaCapture;
@@ -160,7 +157,7 @@ namespace facy.UWP
         {
             await InitializeCameraAsync();
         }
-
+    
         private async Task ReadData(CancellationToken cancellationToken)
         {
             Task<UInt32> loadAsyncTask;

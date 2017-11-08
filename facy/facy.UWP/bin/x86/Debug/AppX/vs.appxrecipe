@@ -16,7 +16,7 @@
     <PackageRegistrationPath>
     </PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
-    <RegisteredManifestChecksum>71ECE2B6980870945A99AC074320520B589633F0FAB132D7330A4F5E550A487A</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>4F7A6214C1DCDC560A1191F4FD0A2DACCA79DAFAD1EDE79B8F297E314AB32997</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>f736c883-f105-4d30-a719-4bf328872f5e_1.0.0.0_x86__nh7s0b45jarrj</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>f736c883-f105-4d30-a719-4bf328872f5e_nh7s0b45jarrj!App</RegisteredUserModeAppID>
     <RegisteredPackageID>f736c883-f105-4d30-a719-4bf328872f5e</RegisteredPackageID>
@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-07T15:49:59.157</Modified>
+      <Modified>2017-11-08T23:48:23.549</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.exe">
       <PackagePath>entrypoint\facy.UWP.exe</PackagePath>
-      <Modified>2017-11-07T15:36:18.372</Modified>
+      <Modified>2017-11-08T23:48:22.701</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -504,7 +504,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.xr.xml">
       <PackagePath>facy.UWP.xr.xml</PackagePath>
-      <Modified>2017-11-07T13:51:35.643</Modified>
+      <Modified>2017-11-08T23:19:23.173</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -521,11 +521,11 @@
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-07T15:49:58.787</Modified>
+      <Modified>2017-11-08T23:19:27.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe">
       <PackagePath>facy.UWP.exe</PackagePath>
-      <Modified>2017-11-07T15:49:59.153</Modified>
+      <Modified>2017-11-08T23:48:23.544</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
