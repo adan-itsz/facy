@@ -1,37 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using Windows.Devices.SerialCommunication;
 using Windows.Storage.Streams;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Enumeration;
 using Windows.UI.Popups;
 using Windows.Media.Capture;
-using Windows.Storage;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.Storage.Pickers.Provider;
-using Windows.Storage.Pickers;
-
-using Windows.Media.Capture;
-using Windows.ApplicationModel;
-using System.Threading.Tasks;
 using Windows.System.Display;
-using Windows.Graphics.Display;
-using Windows.UI.Core;
-using Windows.Media.MediaProperties;
+using Windows.Media.Core;
 
 namespace facy.UWP
 {
@@ -39,12 +19,14 @@ namespace facy.UWP
     {
         private MediaCapture _mediaCapture;
         bool isPreviewing;
+        bool ban = false;
         DisplayRequest displayRequest = new DisplayRequest();
         private SerialDevice serialPort = null;
         DataReader dataReaderObject = null;
         private ObservableCollection<DeviceInformation> listOfDevices;
         private CancellationTokenSource ReadCancellationTokenSource;
         private DeviceInformation _cameraDevice;
+        private FaceDetectionEffect _faceDetectionEffect;
 
 
         public MainPage()
@@ -52,7 +34,7 @@ namespace facy.UWP
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
            // LoadApplication(new facy.App());
-           // ListAvailablePorts();
+           ListAvailablePorts();
            Application.Current.Resuming += Application_Resuming;
 
         }
@@ -121,7 +103,7 @@ namespace facy.UWP
 
         private async Task InitializeCameraAsync()
         {
-            if (_mediaCapture == null)
+            if (_cameraDevice == null)
             {
                 // Get the camera devices
                 var cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
@@ -145,7 +127,37 @@ namespace facy.UWP
 
                 // Start viewing through the CaptureElement 
                 await _mediaCapture.StartPreviewAsync();
+
+                //await monitoreoDeCamara(_cameraDevice);
+                //deteccion rostros
+
+                
+
             }
+        }
+
+        private async Task monitoreoDeCamara(DeviceInformation cameraDevice)
+        {
+            var definition = new FaceDetectionEffectDefinition();
+            definition.SynchronousDetectionEnabled = false;
+            definition.DetectionMode = FaceDetectionMode.HighPerformance;
+
+            _faceDetectionEffect = (await _mediaCapture.AddVideoEffectAsync(definition, MediaStreamType.VideoPreview)) as FaceDetectionEffect;
+            _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
+
+            _faceDetectionEffect.DesiredDetectionInterval = TimeSpan.FromMilliseconds(100);
+            _faceDetectionEffect.Enabled = true;
+
+        }
+        private async void FaceDetectionEffect_FaceDetected(FaceDetectionEffect sender, FaceDetectedEventArgs args)
+        {
+           if (args.ResultFrame.DetectedFaces.Count > 0)
+            {
+                ban = true;
+                //aqui se tomara la foto
+               
+            }
+
         }
 
         private async void Application_Resuming(object sender, object o)
@@ -177,8 +189,8 @@ namespace facy.UWP
                 //   var dialog = new MessageDialog(valor.ToString());
                 //   await dialog.ShowAsync();
 
-                //aqui se debe llamar al metodo de tomar la foto
-                
+                //llama a buscar rostro en la camara
+                await monitoreoDeCamara(_cameraDevice);
             }
             
         }
