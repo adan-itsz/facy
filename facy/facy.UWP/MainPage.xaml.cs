@@ -12,6 +12,8 @@ using Windows.UI.Popups;
 using Windows.Media.Capture;
 using Windows.System.Display;
 using Windows.Media.Core;
+using Windows.Storage;
+using Windows.Media.MediaProperties;
 
 namespace facy.UWP
 {
@@ -34,7 +36,7 @@ namespace facy.UWP
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
            // LoadApplication(new facy.App());
-           ListAvailablePorts();
+          // ListAvailablePorts();
            Application.Current.Resuming += Application_Resuming;
 
         }
@@ -128,8 +130,7 @@ namespace facy.UWP
                 // Start viewing through the CaptureElement 
                 await _mediaCapture.StartPreviewAsync();
 
-                //await monitoreoDeCamara(_cameraDevice);
-                //deteccion rostros
+                await monitoreoDeCamara(_cameraDevice);
 
                 
 
@@ -153,9 +154,22 @@ namespace facy.UWP
         {
            if (args.ResultFrame.DetectedFaces.Count > 0)
             {
-                ban = true;
-                //aqui se tomara la foto
-               
+                try
+                {
+                    ban = true;
+                    //aqui se tomara la foto
+                    var storageFolder = KnownFolders.SavedPictures;
+
+                    // Create the file that we're going to save the photo to.
+                    var file = await storageFolder.CreateFileAsync("sample.jpg", CreationCollisionOption.ReplaceExisting);
+
+                    // Update the file with the contents of the photograph.
+                    await _mediaCapture.CapturePhotoToStorageFileAsync(ImageEncodingProperties.CreateJpeg(), file);
+                }catch(Exception ex)
+                {
+
+                }
+            
             }
 
         }
@@ -190,7 +204,7 @@ namespace facy.UWP
                 //   await dialog.ShowAsync();
 
                 //llama a buscar rostro en la camara
-                await monitoreoDeCamara(_cameraDevice);
+               // await monitoreoDeCamara(_cameraDevice);
             }
             
         }
