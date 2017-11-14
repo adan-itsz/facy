@@ -9,6 +9,8 @@ C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.build.appxrecipe
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Microsoft.CSharp.dll
+C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Net.Http.Extensions.dll
+C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Net.Http.Primitives.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.ComponentModel.DataAnnotations.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Core.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Net.dll
@@ -21,8 +23,11 @@ C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Xml.Serialization.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Xml.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.dll
+C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Microsoft.ProjectOxford.Common.dll
+C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Microsoft.ProjectOxford.Face.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Microsoft.VisualBasic.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Microsoft.Win32.Primitives.dll
+C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Newtonsoft.Json.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.AppContext.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Collections.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\System.Collections.Concurrent.dll
@@ -115,7 +120,6 @@ C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Xamarin.Forms.Platform.UAP.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Xamarin.Forms.Platform.dll
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Xamarin.Forms.Xaml.dll
-C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\facy.UWP.csprojResolveAssemblyReference.cache
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\App.g.i.cs
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\App.g.cs
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\MainPage.g.i.cs
@@ -195,3 +199,4 @@ C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\Xamarin.Forms.Platform.UAP.pri.xml
 C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\ProjectArchitectures.txt
+C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\obj\x86\Debug\facy.UWP.csprojResolveAssemblyReference.cache

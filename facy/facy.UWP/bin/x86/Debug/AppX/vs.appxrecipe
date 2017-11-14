@@ -28,17 +28,25 @@
     <AppXManifest Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-09T14:14:55.493</Modified>
+      <Modified>2017-11-14T22:39:29.798</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.exe">
       <PackagePath>entrypoint\facy.UWP.exe</PackagePath>
-      <Modified>2017-11-09T14:14:54.914</Modified>
+      <Modified>2017-11-14T22:39:29.237</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
       <Modified>2015-07-23T04:06:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.Net.Http\2.2.29\lib\win8\System.Net.Http.Extensions.dll">
+      <PackagePath>System.Net.Http.Extensions.dll</PackagePath>
+      <Modified>2015-02-20T02:10:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.Net.Http\2.2.29\lib\win8\System.Net.Http.Primitives.dll">
+      <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
+      <Modified>2015-02-20T02:10:46.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.NETCore.Portable.Compatibility\1.0.0\lib\netcore50\System.ComponentModel.DataAnnotations.dll">
       <PackagePath>System.ComponentModel.DataAnnotations.dll</PackagePath>
@@ -88,6 +96,14 @@
       <PackagePath>System.dll</PackagePath>
       <Modified>2015-07-23T04:06:52.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.ProjectOxford.Common\1.0.324\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Common.dll">
+      <PackagePath>Microsoft.ProjectOxford.Common.dll</PackagePath>
+      <Modified>2017-01-20T17:57:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.ProjectOxford.Face\1.3.0\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Microsoft.ProjectOxford.Face.dll">
+      <PackagePath>Microsoft.ProjectOxford.Face.dll</PackagePath>
+      <Modified>2017-05-05T15:24:04.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.VisualBasic\10.0.0\lib\netcore50\Microsoft.VisualBasic.dll">
       <PackagePath>Microsoft.VisualBasic.dll</PackagePath>
       <Modified>2015-07-23T04:07:08.000</Modified>
@@ -95,6 +111,10 @@
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.Win32.Primitives\4.0.0\lib\dotnet\Microsoft.Win32.Primitives.dll">
       <PackagePath>Microsoft.Win32.Primitives.dll</PackagePath>
       <Modified>2015-07-23T04:07:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Newtonsoft.Json\9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+      <Modified>2016-06-14T04:06:14.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\System.AppContext\4.0.0\lib\netcore50\System.AppContext.dll">
       <PackagePath>System.AppContext.dll</PackagePath>
@@ -521,11 +541,11 @@
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-08T23:19:27.498</Modified>
+      <Modified>2017-11-12T22:47:06.966</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe">
       <PackagePath>facy.UWP.exe</PackagePath>
-      <Modified>2017-11-09T14:14:55.490</Modified>
+      <Modified>2017-11-14T22:39:29.794</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

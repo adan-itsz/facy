@@ -8,12 +8,19 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Enumeration;
-using Windows.UI.Popups;
 using Windows.Media.Capture;
 using Windows.System.Display;
 using Windows.Media.Core;
 using Windows.Storage;
 using Windows.Media.MediaProperties;
+using Microsoft.ProjectOxford.Face;
+using Microsoft.ProjectOxford.Face.Contract;
+using System.Net.Http;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Diagnostics;
+using System.Text;
+using System.Collections.Generic;
 
 namespace facy.UWP
 {
@@ -29,24 +36,24 @@ namespace facy.UWP
         private CancellationTokenSource ReadCancellationTokenSource;
         private DeviceInformation _cameraDevice;
         private FaceDetectionEffect _faceDetectionEffect;
-
-
+        string path = @"C:\Users\Adán\Pictures\sample.jpg";
+        static string subscriptionKey = "a53f005c45b84adba817bffacf34fe54";
+        bool bandera = false;
         public MainPage()
         {
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
-           // LoadApplication(new facy.App());
-          // ListAvailablePorts();
-           Application.Current.Resuming += Application_Resuming;
+         //  ListAvailablePorts();
+            Application.Current.Resuming += Application_Resuming;
 
         }
+        private readonly IFaceServiceClient _faceServiceClient
+               = new FaceServiceClient(subscriptionKey, "https://westcentralus.api.cognitive.microsoft.com/face/v1.0");
 
         private async void ListAvailablePorts()
         {
             try
-            {
-               // var dialog = new MessageDialog(valor.ToString());
-                
+            {               
                 string aqs = SerialDevice.GetDeviceSelector();
                 var dis = await DeviceInformation.FindAllAsync(aqs);
                 for(int i = 0; i < dis.Count; i++)
@@ -77,7 +84,7 @@ namespace facy.UWP
                 serialPort.DataBits = 8;
                 serialPort.Handshake = SerialHandshake.None;
                 ReadCancellationTokenSource = new CancellationTokenSource();
-                Listen();
+               // Listen();
             }
             catch(Exception ex)
             {
@@ -107,27 +114,27 @@ namespace facy.UWP
         {
             if (_cameraDevice == null)
             {
-                // Get the camera devices
+                // obtiene las camaras disponibles
                 var cameraDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
 
-                // try to get the back facing device for a phone
+               
                 var backFacingDevice = cameraDevices
                     .FirstOrDefault(c => c.EnclosureLocation != null && c.EnclosureLocation.Panel == Windows.Devices.Enumeration.Panel.Front);
 
                 var preferredDevice = backFacingDevice ?? cameraDevices.FirstOrDefault();
                 _cameraDevice = preferredDevice;
 
-                // Create MediaCapture
+                // Crea MediaCapture
                 _mediaCapture = new MediaCapture();
                 var settings = new MediaCaptureInitializationSettings { VideoDeviceId = _cameraDevice.Id };
 
                 
                 await _mediaCapture.InitializeAsync(settings);
 
-                // Set the preview source for the CaptureElement
+                // envia fuente de video
                 PreviewControl.Source = _mediaCapture;
 
-                // Start viewing through the CaptureElement 
+                // comienza el viewer
                 await _mediaCapture.StartPreviewAsync();
 
                 await monitoreoDeCamara(_cameraDevice);
@@ -139,39 +146,174 @@ namespace facy.UWP
 
         private async Task monitoreoDeCamara(DeviceInformation cameraDevice)
         {
+            CancelReadTask();
             var definition = new FaceDetectionEffectDefinition();
             definition.SynchronousDetectionEnabled = false;
             definition.DetectionMode = FaceDetectionMode.HighPerformance;
-
-            _faceDetectionEffect = (await _mediaCapture.AddVideoEffectAsync(definition, MediaStreamType.VideoPreview)) as FaceDetectionEffect;
-            _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
-
+            
+                _faceDetectionEffect = (await _mediaCapture.AddVideoEffectAsync(definition, MediaStreamType.VideoPreview)) as FaceDetectionEffect;
+             _faceDetectionEffect.FaceDetected +=  FaceDetectionEffect_FaceDetected;
+      
             _faceDetectionEffect.DesiredDetectionInterval = TimeSpan.FromMilliseconds(100);
-            _faceDetectionEffect.Enabled = true;
+                _faceDetectionEffect.Enabled = true;
+            
 
         }
         private async void FaceDetectionEffect_FaceDetected(FaceDetectionEffect sender, FaceDetectedEventArgs args)
         {
+            
            if (args.ResultFrame.DetectedFaces.Count > 0)
             {
+
                 try
                 {
-                    ban = true;
+               //     _faceDetectionEffect.Enabled = false;
+                    _faceDetectionEffect.FaceDetected -= FaceDetectionEffect_FaceDetected;
                     //aqui se tomara la foto
-                    var storageFolder = KnownFolders.SavedPictures;
-
-                    // Create the file that we're going to save the photo to.
+                    var storageFolder = KnownFolders.PicturesLibrary;
+                   
+                    // Crea el archivo de foto.
                     var file = await storageFolder.CreateFileAsync("sample.jpg", CreationCollisionOption.ReplaceExisting);
 
-                    // Update the file with the contents of the photograph.
+                    // actualiza archivo con la foto
                     await _mediaCapture.CapturePhotoToStorageFileAsync(ImageEncodingProperties.CreateJpeg(), file);
-                }catch(Exception ex)
+                    await MakeAnalysisRequest(path);
+                    _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
+
+                }
+                catch(Exception ex)
                 {
 
                 }
             
             }
 
+        }
+         async Task<double> MakeAnalysisRequest(string imageFilePath)
+        {           
+
+            // convierte imagen a array de bytes y envia para su tratamiento.
+            byte[] byteData = GetImageAsByteArray(imageFilePath);
+            var faces = await DetectFaces(new MemoryStream(byteData));
+            double edad=0.0;
+            if (faces == null) { return 0.0; }
+            else
+            {
+                var faceCount = 1;
+
+                foreach (var face in faces)
+                {
+
+                     edad = face.FaceAttributes.Age;
+
+                    /*
+                    AppendMessage($"Sideburns: {face.FaceAttributes.FacialHair.Sideburns}");
+                    AppendMessage($"Moustache: {face.FaceAttributes.FacialHair.Moustache}");
+                    AppendMessage($"Beard: {face.FaceAttributes.FacialHair.Beard}");
+                    AppendMessage($"Glasses: {face.FaceAttributes.Glasses}");
+                    AppendMessage($"Gender: {face.FaceAttributes.Gender}");
+                    AppendMessage($"Smile: {face.FaceAttributes.Smile}");
+                    AppendMessage($"Age: {face.FaceAttributes.Age}");
+                    AppendMessage($"Face {faceCount++} ({colorName})");*/
+                }
+               
+                return edad;
+            }
+        }
+
+        private async Task<Face[]> DetectFaces(Stream imageStream)
+        {
+            var attributes = new List<FaceAttributeType>();
+            attributes.Add(FaceAttributeType.Age);
+            attributes.Add(FaceAttributeType.Gender);
+            attributes.Add(FaceAttributeType.Smile);
+            attributes.Add(FaceAttributeType.Glasses);
+            attributes.Add(FaceAttributeType.FacialHair);
+            attributes.Add(FaceAttributeType.Emotion);
+            Face[] faces = null;
+            try
+            {
+                faces = await _faceServiceClient.DetectAsync(imageStream, true, true, attributes);
+            }
+            catch (FaceAPIException exception)
+            {
+               
+            }
+         
+            return faces;
+        }
+
+        static string JsonPrettyPrint(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+                return string.Empty;
+
+            json = json.Replace(Environment.NewLine, "").Replace("\t", "");
+
+            StringBuilder sb = new StringBuilder();
+            bool quote = false;
+            bool ignore = false;
+            int offset = 0;
+            int indentLength = 3;
+
+            foreach (char ch in json)
+            {
+                switch (ch)
+                {
+                    case '"':
+                        if (!ignore) quote = !quote;
+                        break;
+                    case '\'':
+                        if (quote) ignore = !ignore;
+                        break;
+                }
+
+                if (quote)
+                    sb.Append(ch);
+                else
+                {
+                    switch (ch)
+                    {
+                        case '{':
+                        case '[':
+                            sb.Append(ch);
+                            sb.Append(Environment.NewLine);
+                            sb.Append(new string(' ', ++offset * indentLength));
+                            break;
+                        case '}':
+                        case ']':
+                            sb.Append(Environment.NewLine);
+                            sb.Append(new string(' ', --offset * indentLength));
+                            sb.Append(ch);
+                            break;
+                        case ',':
+                            sb.Append(ch);
+                            sb.Append(Environment.NewLine);
+                            sb.Append(new string(' ', offset * indentLength));
+                            break;
+                        case ':':
+                            sb.Append(ch);
+                            sb.Append(' ');
+                            break;
+                        default:
+                            if (ch != ' ') sb.Append(ch);
+                            break;
+                    }
+                }
+            }
+
+            return sb.ToString().Trim();
+        }
+
+
+        static byte[] GetImageAsByteArray(string imageFilePath)
+        {
+            
+                FileStream fileStream = new FileStream(imageFilePath, FileMode.Open, FileAccess.Read);
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+                return binaryReader.ReadBytes((int)fileStream.Length);
+            
+            
         }
 
         private async void Application_Resuming(object sender, object o)
@@ -186,6 +328,7 @@ namespace facy.UWP
     
         private async Task ReadData(CancellationToken cancellationToken)
         {
+            
             Task<UInt32> loadAsyncTask;
             uint ReadBufferLength = 1024;
             cancellationToken.ThrowIfCancellationRequested();
@@ -204,7 +347,7 @@ namespace facy.UWP
                 //   await dialog.ShowAsync();
 
                 //llama a buscar rostro en la camara
-               // await monitoreoDeCamara(_cameraDevice);
+              //  await monitoreoDeCamara(_cameraDevice);
             }
             
         }
