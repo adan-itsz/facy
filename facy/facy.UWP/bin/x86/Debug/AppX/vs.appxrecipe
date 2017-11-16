@@ -28,13 +28,25 @@
     <AppXManifest Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-14T22:39:29.798</Modified>
+      <Modified>2017-11-16T22:34:36.029</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.exe">
       <PackagePath>entrypoint\facy.UWP.exe</PackagePath>
-      <Modified>2017-11-14T22:39:29.237</Modified>
+      <Modified>2017-11-16T22:34:35.389</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\FireSharp\2.0.4\lib\portable-net45+sl5+wp8+win8\FireSharp.dll">
+      <PackagePath>FireSharp.dll</PackagePath>
+      <Modified>2016-05-10T18:41:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.Bcl.Async\1.0.168\lib\win8\Microsoft.Threading.Tasks.Extensions.dll">
+      <PackagePath>Microsoft.Threading.Tasks.Extensions.dll</PackagePath>
+      <Modified>2014-04-07T17:26:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.Bcl.Async\1.0.168\lib\win8\Microsoft.Threading.Tasks.dll">
+      <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
+      <Modified>2014-04-07T17:26:14.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -541,11 +553,11 @@
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-12T22:47:06.966</Modified>
+      <Modified>2017-11-16T22:30:49.727</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe">
       <PackagePath>facy.UWP.exe</PackagePath>
-      <Modified>2017-11-14T22:39:29.794</Modified>
+      <Modified>2017-11-16T22:34:36.025</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

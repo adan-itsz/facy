@@ -99,7 +99,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Todo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 
+
 namespace facy.UWP
 {
     public sealed partial class MainPage
@@ -39,12 +40,14 @@ namespace facy.UWP
         string path = @"C:\Users\Adán\Pictures\sample.jpg";
         static string subscriptionKey = "a53f005c45b84adba817bffacf34fe54";
         bool bandera = false;
+
+        
         public MainPage()
         {
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
-         //  ListAvailablePorts();
-            Application.Current.Resuming += Application_Resuming;
+            ListAvailablePorts();
+            
 
         }
         private readonly IFaceServiceClient _faceServiceClient
@@ -84,7 +87,7 @@ namespace facy.UWP
                 serialPort.DataBits = 8;
                 serialPort.Handshake = SerialHandshake.None;
                 ReadCancellationTokenSource = new CancellationTokenSource();
-               // Listen();
+                Listen();
             }
             catch(Exception ex)
             {
@@ -137,14 +140,14 @@ namespace facy.UWP
                 // comienza el viewer
                 await _mediaCapture.StartPreviewAsync();
 
-                await monitoreoDeCamara(_cameraDevice);
+                 monitoreoDeCamara(_cameraDevice);
 
                 
 
             }
         }
 
-        private async Task monitoreoDeCamara(DeviceInformation cameraDevice)
+        private async void monitoreoDeCamara(DeviceInformation cameraDevice)
         {
             CancelReadTask();
             var definition = new FaceDetectionEffectDefinition();
@@ -200,21 +203,13 @@ namespace facy.UWP
             else
             {
                 var faceCount = 1;
+                persona p;
 
                 foreach (var face in faces)
                 {
 
-                     edad = face.FaceAttributes.Age;
-
-                    /*
-                    AppendMessage($"Sideburns: {face.FaceAttributes.FacialHair.Sideburns}");
-                    AppendMessage($"Moustache: {face.FaceAttributes.FacialHair.Moustache}");
-                    AppendMessage($"Beard: {face.FaceAttributes.FacialHair.Beard}");
-                    AppendMessage($"Glasses: {face.FaceAttributes.Glasses}");
-                    AppendMessage($"Gender: {face.FaceAttributes.Gender}");
-                    AppendMessage($"Smile: {face.FaceAttributes.Smile}");
-                    AppendMessage($"Age: {face.FaceAttributes.Age}");
-                    AppendMessage($"Face {faceCount++} ({colorName})");*/
+                    p = new persona(face.FaceAttributes.Age, face.FaceAttributes.Gender, face.FaceAttributes.Glasses, face.FaceAttributes.Emotion);
+                  
                 }
                
                 return edad;
@@ -318,12 +313,12 @@ namespace facy.UWP
 
         private async void Application_Resuming(object sender, object o)
         {
-            await InitializeCameraAsync();
+          //  await InitializeCameraAsync();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await InitializeCameraAsync();
+        //    await InitializeCameraAsync();
         }
     
         private async Task ReadData(CancellationToken cancellationToken)
@@ -340,19 +335,28 @@ namespace facy.UWP
             if (bytesRead > 0)
             {
                 valor = dataReaderObject.ReadString(bytesRead); //lee lo enviado por el serial port
+
             }
             if (valor == "#\r\n")
             {
-                //   var dialog = new MessageDialog(valor.ToString());
-                //   await dialog.ShowAsync();
 
                 //llama a buscar rostro en la camara
-              //  await monitoreoDeCamara(_cameraDevice);
+            
+                //await monitoreoDeCamara(_cameraDevice);
             }
             
         }
 
-      
+        private async void SubirDB()
+        {
+            IFirebaseClient client = new FirebaseClient(config);
+            var todo = new Todo // se crea un objeto de la clase Todo solo es un set and get
+            {
+                name = "Execute PUSH", //Contenido del push
+                priority = 2
+            };
+            PushResponse response = await client.PushAsync("todos/push", todo); //(path,datos)
+        }
 
        
         private void CancelReadTask()
