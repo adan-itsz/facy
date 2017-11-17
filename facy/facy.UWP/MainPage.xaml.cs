@@ -140,7 +140,7 @@ namespace facy.UWP
                 // comienza el viewer
                 await _mediaCapture.StartPreviewAsync();
 
-                 monitoreoDeCamara(_cameraDevice);
+                // monitoreoDeCamara(_cameraDevice);
 
                 
 
@@ -149,7 +149,7 @@ namespace facy.UWP
 
         private async void monitoreoDeCamara(DeviceInformation cameraDevice)
         {
-            CancelReadTask();
+           // CancelReadTask();
             var definition = new FaceDetectionEffectDefinition();
             definition.SynchronousDetectionEnabled = false;
             definition.DetectionMode = FaceDetectionMode.HighPerformance;
@@ -181,7 +181,7 @@ namespace facy.UWP
                     // actualiza archivo con la foto
                     await _mediaCapture.CapturePhotoToStorageFileAsync(ImageEncodingProperties.CreateJpeg(), file);
                     await MakeAnalysisRequest(path);
-                    _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
+                   // _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
 
                 }
                 catch(Exception ex)
@@ -211,7 +211,7 @@ namespace facy.UWP
                     p = new persona(face.FaceAttributes.Age, face.FaceAttributes.Gender, face.FaceAttributes.Glasses, face.FaceAttributes.Emotion);
                   
                 }
-               
+                await Task.Delay(8000);
                 return edad;
             }
         }
@@ -318,7 +318,7 @@ namespace facy.UWP
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-        //    await InitializeCameraAsync();
+            await InitializeCameraAsync();
         }
     
         private async Task ReadData(CancellationToken cancellationToken)
@@ -341,22 +341,13 @@ namespace facy.UWP
             {
 
                 //llama a buscar rostro en la camara
-            
-                //await monitoreoDeCamara(_cameraDevice);
+                monitoreoDeCamara(_cameraDevice);
+
             }
             
         }
 
-        private async void SubirDB()
-        {
-            IFirebaseClient client = new FirebaseClient(config);
-            var todo = new Todo // se crea un objeto de la clase Todo solo es un set and get
-            {
-                name = "Execute PUSH", //Contenido del push
-                priority = 2
-            };
-            PushResponse response = await client.PushAsync("todos/push", todo); //(path,datos)
-        }
+       
 
        
         private void CancelReadTask()
