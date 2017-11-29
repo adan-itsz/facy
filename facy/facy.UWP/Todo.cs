@@ -2,7 +2,8 @@
 {
     internal class Todo
     {
-        public string name { get; set; }
-        public int priority { get; set; }
+        public string genero { get; set; }
+        public double edad { get; set; }
+        public string fechaDB { get; set; }
     }
 }

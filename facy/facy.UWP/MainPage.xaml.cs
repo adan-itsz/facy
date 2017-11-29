@@ -21,7 +21,7 @@ using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
-
+using Microsoft.ProjectOxford.Common.Contract;
 
 namespace facy.UWP
 {
@@ -40,13 +40,16 @@ namespace facy.UWP
         string path = @"C:\Users\Adán\Pictures\sample.jpg";
         static string subscriptionKey = "a53f005c45b84adba817bffacf34fe54";
         bool bandera = false;
+        string variableCondicion = "#\r\n";
 
-        
+
+
         public MainPage()
         {
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
             ListAvailablePorts();
+            //persona p = new persona(22.0, "female", new Glasses(), new Microsoft.ProjectOxford.Common.Contract.EmotionScores());
             
 
         }
@@ -149,8 +152,8 @@ namespace facy.UWP
 
         private async void monitoreoDeCamara(DeviceInformation cameraDevice)
         {
-           // CancelReadTask();
-            var definition = new FaceDetectionEffectDefinition();
+            AppendMessage("hola");
+             var definition = new FaceDetectionEffectDefinition();
             definition.SynchronousDetectionEnabled = false;
             definition.DetectionMode = FaceDetectionMode.HighPerformance;
             
@@ -162,10 +165,16 @@ namespace facy.UWP
             
 
         }
+        private void AppendMessage(string message)
+        {
+
+            textResults.Text = $"{message}\r\n{textResults.Text}";
+        }
+
         private async void FaceDetectionEffect_FaceDetected(FaceDetectionEffect sender, FaceDetectedEventArgs args)
         {
-            
-           if (args.ResultFrame.DetectedFaces.Count > 0)
+           
+            if (args.ResultFrame.DetectedFaces.Count > 0)
             {
 
                 try
@@ -203,17 +212,26 @@ namespace facy.UWP
             else
             {
                 var faceCount = 1;
-                persona p;
+                
 
                 foreach (var face in faces)
                 {
-
-                    p = new persona(face.FaceAttributes.Age, face.FaceAttributes.Gender, face.FaceAttributes.Glasses, face.FaceAttributes.Emotion);
-                  
+                  //  AppendMessage(face.FaceAttributes.Gender);
+                   // AppendMessage(face.FaceAttributes.Age.ToString());
+                    await crearObjeto(face.FaceAttributes.Age, face.FaceAttributes.Gender, face.FaceAttributes.Glasses, face.FaceAttributes.Emotion);
+                    
                 }
                 await Task.Delay(8000);
+                variableCondicion = "#\r\n";
+                SerialPortConfiguration();
                 return edad;
             }
+        }
+        private async Task crearObjeto(double age, string gender, Glasses glasses, EmotionScores emotion)
+        {
+            persona p;
+            p = new persona(age, gender,glasses, emotion);
+
         }
 
         private async Task<Face[]> DetectFaces(Stream imageStream)
@@ -313,7 +331,7 @@ namespace facy.UWP
 
         private async void Application_Resuming(object sender, object o)
         {
-          //  await InitializeCameraAsync();
+            await InitializeCameraAsync();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -337,9 +355,9 @@ namespace facy.UWP
                 valor = dataReaderObject.ReadString(bytesRead); //lee lo enviado por el serial port
 
             }
-            if (valor == "#\r\n")
+            if (valor == variableCondicion)
             {
-
+                variableCondicion = "x";
                 //llama a buscar rostro en la camara
                 monitoreoDeCamara(_cameraDevice);
 

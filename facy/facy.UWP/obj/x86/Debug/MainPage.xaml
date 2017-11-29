@@ -9,7 +9,13 @@
     mc:Ignorable="d">
 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <CaptureElement x:ConnectionId='1' Name="PreviewControl" Stretch="Uniform"/>
-</Grid>
+        
+            <TextBlock x:ConnectionId='2' x:Name="textResults" Margin="10,0,10,10" Width="280"
+                    Foreground="White" FontSize="18" TextWrapping="WrapWholeWords"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        
+    </Grid>
 
 </Page>
 
