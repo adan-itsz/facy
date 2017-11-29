@@ -152,7 +152,7 @@ namespace facy.UWP
 
         private async void monitoreoDeCamara(DeviceInformation cameraDevice)
         {
-            AppendMessage("hola");
+            AppendMessage("en proceso");
              var definition = new FaceDetectionEffectDefinition();
             definition.SynchronousDetectionEnabled = false;
             definition.DetectionMode = FaceDetectionMode.HighPerformance;

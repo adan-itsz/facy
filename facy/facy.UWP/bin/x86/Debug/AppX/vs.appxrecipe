@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-29T02:54:18.713</Modified>
+      <Modified>2017-11-29T14:26:42.861</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\facy.UWP.exe">
       <PackagePath>entrypoint\facy.UWP.exe</PackagePath>
-      <Modified>2017-11-29T02:54:18.083</Modified>
+      <Modified>2017-11-29T14:26:42.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\.nuget\packages\FireSharp\2.0.4\lib\portable-net45+sl5+wp8+win8\FireSharp.dll">
       <PackagePath>FireSharp.dll</PackagePath>
@@ -557,7 +557,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adán\Documents\Visual Studio 2015\Projects\facy\facy\facy.UWP\bin\x86\Debug\Core\facy.UWP.exe">
       <PackagePath>facy.UWP.exe</PackagePath>
-      <Modified>2017-11-29T02:54:18.705</Modified>
+      <Modified>2017-11-29T14:26:42.857</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -140,7 +140,7 @@ namespace facy.UWP
             };
             FirebaseResponse response2 = await client.UpdateAsync(query+"/views",todo);
 
-            FirebaseResponse response3 = await client.GetAsync(query + "/" + gender + "/" + rangoEdad + "/" + emocionSuperior + "/total");
+            FirebaseResponse response3 = await client.GetAsync(query + "/" + gender + "/" + rangoEdad + "/Emociones/" + emocionSuperior + "/total");
             string countEmocion =response3.ResultAs<string>();
             totalCountEmocion = countEmocion != null ? Convert.ToInt32(countEmocion) : 0;
             var todo2 = new newEmocion
@@ -148,9 +148,9 @@ namespace facy.UWP
             {
                 total = totalCountEmocion + 1
             };
-            FirebaseResponse response4 = await client.UpdateAsync(query + "/" + gender + "/" + rangoEdad + "/" + emocionSuperior, todo2);
+            FirebaseResponse response4 = await client.UpdateAsync(query + "/" + gender + "/" + rangoEdad + "/Emociones/" + emocionSuperior, todo2);
 
-            FirebaseResponse response5 = await client.GetAsync(query + "/" + gender + "/" + rangoEdad + "/" + glasses + "/total");
+            FirebaseResponse response5 = await client.GetAsync(query + "/" + gender + "/" + rangoEdad + "/lentes/" + glasses + "/total");
             string countLentes = response5.ResultAs<string>();
             totalCountLentes = countLentes != null ? Convert.ToInt32(countEmocion) : 0;
              var todo3 = new anteojos
@@ -158,7 +158,7 @@ namespace facy.UWP
             {
                 total = totalCountLentes + 1
             };
-            FirebaseResponse response6= await client.UpdateAsync(query + "/" + gender + "/" + rangoEdad + "/" + glasses, todo3);
+            FirebaseResponse response6= await client.UpdateAsync(query + "/" + gender + "/" + rangoEdad + "/lentes/" + glasses, todo3);
         }
 
         
