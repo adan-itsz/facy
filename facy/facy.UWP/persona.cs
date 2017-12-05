@@ -10,6 +10,7 @@ using FireSharp.Config;
 using FireSharp;
 using FireSharp.Response;
 
+
 namespace facy.UWP
 {
     class persona
@@ -63,7 +64,7 @@ namespace facy.UWP
                        age > 22 && age <= 30 ? "Edad 23-30" :
                        age > 30 && age <= 40 ? "Edad 31-40" :
                        age > 40 && age <= 50 ? "Edad 41-50" :
-                       age > 50 && age <= 100 ? "Edad 50 o mas":null;
+                       age > 50 && age <= 100 ? "Edad 51 o mas":null;
 
             emociones = new double[8];
             emociones[0] = Convert.ToDouble(emotion.Anger);
@@ -159,9 +160,21 @@ namespace facy.UWP
                 total = totalCountLentes + 1
             };
             FirebaseResponse response6= await client.UpdateAsync(query + "/" + gender + "/" + rangoEdad + "/lentes/" + glasses, todo3);
+
+            var todo4 = new datosPersona
+            {
+                edad = Convert.ToInt32(age),
+                genero = gender,
+                lentes = glasses.ToString(),
+                emocion = emocionSuperior
+            };
+
+            FirebaseResponse response7 = await client.UpdateAsync(query + "/ultimaPersona", todo4);
+            
+
         }
 
-        
+
 
         private async void ActualizarFechaDB()
         {

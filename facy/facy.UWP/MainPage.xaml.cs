@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.ProjectOxford.Common.Contract;
+using Windows.UI.Popups;
 
 namespace facy.UWP
 {
@@ -49,7 +50,7 @@ namespace facy.UWP
             this.InitializeComponent();
             listOfDevices = new ObservableCollection<DeviceInformation>();
             ListAvailablePorts();
-            //persona p = new persona(22.0, "female", new Glasses(), new Microsoft.ProjectOxford.Common.Contract.EmotionScores());
+           
             
 
         }
@@ -152,7 +153,7 @@ namespace facy.UWP
 
         private async void monitoreoDeCamara(DeviceInformation cameraDevice)
         {
-            AppendMessage("en proceso");
+             AppendMessage("en proceso");
              var definition = new FaceDetectionEffectDefinition();
             definition.SynchronousDetectionEnabled = false;
             definition.DetectionMode = FaceDetectionMode.HighPerformance;
@@ -169,6 +170,7 @@ namespace facy.UWP
         {
 
             textResults.Text = $"{message}\r\n{textResults.Text}";
+           // textResults.Text = $"{message}\r\n";
         }
 
         private async void FaceDetectionEffect_FaceDetected(FaceDetectionEffect sender, FaceDetectedEventArgs args)
@@ -201,14 +203,15 @@ namespace facy.UWP
             }
 
         }
-         async Task<double> MakeAnalysisRequest(string imageFilePath)
+         async Task MakeAnalysisRequest(string imageFilePath)
         {           
 
             // convierte imagen a array de bytes y envia para su tratamiento.
             byte[] byteData = GetImageAsByteArray(imageFilePath);
             var faces = await DetectFaces(new MemoryStream(byteData));
             double edad=0.0;
-            if (faces == null) { return 0.0; }
+            if (faces == null) {
+            }
             else
             {
                 var faceCount = 1;
@@ -216,16 +219,19 @@ namespace facy.UWP
 
                 foreach (var face in faces)
                 {
-                  //  AppendMessage(face.FaceAttributes.Gender);
-                   // AppendMessage(face.FaceAttributes.Age.ToString());
                     await crearObjeto(face.FaceAttributes.Age, face.FaceAttributes.Gender, face.FaceAttributes.Glasses, face.FaceAttributes.Emotion);
-                    
+                  
+                   
                 }
-                await Task.Delay(8000);
-                variableCondicion = "#\r\n";
-                SerialPortConfiguration();
-                return edad;
+                
+                
             }
+            await Task.Delay(8000);
+            var messageDialog = new MessageDialog("No internet connection has been found.");
+            await messageDialog.ShowAsync();
+            //AppendMessage("terminado");
+            variableCondicion = "#\r\n";
+            SerialPortConfiguration();
         }
         private async Task crearObjeto(double age, string gender, Glasses glasses, EmotionScores emotion)
         {
@@ -358,6 +364,7 @@ namespace facy.UWP
             if (valor == variableCondicion)
             {
                 variableCondicion = "x";
+                serialPort = null;
                 //llama a buscar rostro en la camara
                 monitoreoDeCamara(_cameraDevice);
 
